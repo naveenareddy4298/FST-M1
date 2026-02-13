@@ -1,32 +1,16 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
+import pandas as pd
 
-# Start the Driver
-with webdriver.Firefox() as driver:
-    # Declare the wait variable
-    wait = WebDriverWait(driver, timeout=10)
-    # Navigate to the URL
-    driver.get("https://training-support.net/webelements/alerts")
-    # Print the title of the page
-    print("Page title is: ", driver.title)
+df = pd.read_excel("data.xlsx")
+rows, columns = df.shape
+print("Number of rows:", rows)
+print("Number of columns:", columns)
 
-    # Find and click the button to open the alert
-    driver.find_element(By.ID, "prompt").click()
+print("\n-----------------------------\n")
+print("Emails column data:")
+print(df["Emails"])
 
-    # Switch focus to the alert
-    promptAlert = wait.until(EC.alert_is_present())
+print("\n-----------------------------\n")
+sorted_df = df.sort_values(by="FirstName", ascending=True)
 
-    # Print the text in the alert
-    alertText = promptAlert.text
-    print("Text in alert: " + alertText)
-    
-    # Type text in the prompt alert
-    promptAlert.send_keys("Awesome!")
-
-    # Close the alert by clicking OK
-    promptAlert.accept()
-
-    # Print the message
-    print(driver.find_element(By.ID, "result").text)
+print("Data sorted by FirstName (Ascending Order):")
+print(sorted_df)

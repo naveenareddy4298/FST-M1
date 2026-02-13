@@ -1,20 +1,30 @@
-from selenium import webdriver
-from selenium.webdriver import Keys, ActionChains
-from selenium.webdriver.common.by import By
+n1 = int(input("Enter number of elements in first list: "))
+list1 = []
 
-# Start the Driver
-with webdriver.Firefox() as driver:
-    # Declare the actions variable
-    actions = ActionChains(driver)
-    # Navigate to the URL
-    driver.get("https://training-support.net/webelements/keyboard-events")
+for i in range(n1):
+    value = int(input(f"Enter element {i + 1} for first list: "))
+    list1.append(value)
 
-    # Print the title of the page
-    print("Page title is: ", driver.title)
 
-    # Press the key
-    actions.send_keys("This is coming from Selenium").send_keys(Keys.RETURN).perform()
-    
-    # Print the message from the page
-    pageText = driver.find_element(By.CSS_SELECTOR, "h1.mt-3").text
-    print(pageText)
+n2 = int(input("Enter number of elements in second list: "))
+list2 = []
+
+for i in range(n2):
+    value = int(input(f"Enter element {i + 1} for second list: "))
+    list2.append(value)
+
+
+new_list = []
+
+for num in list1:
+    if num % 2 != 0:
+        new_list.append(num)
+
+for num in list2:
+    if num % 2 == 0:
+        new_list.append(num)
+
+
+print("First list:", list1)
+print("Second list:", list2)
+print("New combined list:", new_list)

@@ -1,28 +1,25 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+user1 = input("What is Player 1's name? ")
+user2 = input("What is Player 2's name? ")
 
-# Start the Driver
-with webdriver.Firefox() as driver:
-    # Navigate to the URL
-    driver.get("https://training-support.net/webelements/login-form")
-    # Print the title of the page
-    print("Page title is: ", driver.title)
+user1_answer = input(user1 + ", do you want to choose rock, paper or scissors? ").lower()
+user2_answer = input(user2 + ", do you want to choose rock, paper or scissors? ").lower()
 
-    # Find the username field
-    username = driver.find_element(By.XPATH, "//input[@id='username']")
-    # Find the password field
-    password = driver.find_element(By.XPATH, "//input[@id='password']")
-
-    # Enter the given credentials
-    # Enter username
-    username.send_keys("admin")
-    # Enter password
-    password.send_keys("password")
-
-    # Find the login button
-    login = driver.find_element(By.XPATH, "//button[text()='Submit']")
-    login.click()
-
-    # Print the login message
-    message = driver.find_element(By.XPATH, "//h1[contains(@class, 'text-center')]")
-    print("Login message: ", message.text)
+if user1_answer == user2_answer:
+    print("It's a tie!")
+elif user1_answer == 'rock':
+    if user2_answer == 'scissors':
+        print("Rock wins!")
+    else:
+        print("Paper wins!")
+elif user1_answer == 'scissors':
+    if user2_answer == 'paper':
+        print("Scissors win!")
+    else:
+        print("Rock wins!")
+elif user1_answer == 'paper':
+    if user2_answer == 'rock':
+        print("Paper wins!")
+    else:
+        print("Scissors win!")
+else:
+    print("Invalid input! You have not entered rock, paper or scissors, try again.")

@@ -1,28 +1,36 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.color import Color
+user1 = input("What is Player 1's name? ")
+user2 = input("What is Player 2's name? ")
 
-# Start the Driver
-with webdriver.Firefox() as driver:
-    # Navigate to the URL
-    driver.get("https://training-support.net/webelements/target-practice")
+while True:
+    user1_answer = input(user1 + ", do you want to choose rock, paper or scissors? ").lower()
+    user2_answer = input(user2 + ", do you want to choose rock, paper or scissors? ").lower()
 
-    # Print the title of the page
-    print("Page title is: ", driver.title)
+    if user1_answer == user2_answer:
+        print("It's a tie!")
+    elif user1_answer == 'rock':
+        if user2_answer == 'scissors':
+            print("Rock wins!")
+        else:
+            print("Paper wins!")
+    elif user1_answer == 'scissors':
+        if user2_answer == 'paper':
+            print("Scissors win!")
+        else:
+            print("Rock wins!")
+    elif user1_answer == 'paper':
+        if user2_answer == 'rock':
+            print("Paper wins!")
+        else:
+            print("Scissors win!")
+    else:
+        print("Invalid input! You have not entered rock, paper or scissors, try again.")
 
-    # Find the 3rd header element on the page using XPath
-    third_heading = driver.find_element(By.XPATH, "//h3[contains(text(), '#3')]")
-    print("Third heading text is: ", third_heading.text)
-
-    # Find the 5th header element on the page using XPath
-    fifth_heading_color = Color.from_string(driver.find_element(By.XPATH, "//h5[contains(text(), '#5')]").value_of_css_property("color"))
-    print("Fifth heading colour as Hexcode: ", fifth_heading_color.hex)
-    print("Fifth heading colour as RGB: ", fifth_heading_color.rgb)
-
-    # Find the Purple button element on the page
-    purple_button = driver.find_element(By.XPATH, "//button[text()='Purple']")
-    print("Purple button's classes are: ", purple_button.get_attribute("class"))
-
-    # Find the Slate button element on the page
-    slate_button = driver.find_element(By.XPATH, "//button[contains(@class, 'slate')]")
-    print("Text in slate button is: ", slate_button.text)
+    repeat = input("Do you want to play another round? Yes/No: ").lower()
+    
+    if repeat == "yes":
+        pass
+    elif repeat == "no":
+        raise SystemExit
+    else:
+        print("You entered an invalid option. Exiting now.")
+        raise SystemExit

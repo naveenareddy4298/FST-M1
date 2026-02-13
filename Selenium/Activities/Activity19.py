@@ -1,29 +1,23 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
 
-# Start the Driver
-with webdriver.Firefox() as driver:
-    # Declare the wait variable
-    wait = WebDriverWait(driver, timeout=10)
-    # Navigate to the URL
-    driver.get("https://training-support.net/webelements/alerts")
-    # Print the title of the page
-    print("Page title is: ", driver.title)
 
-    # Find and click the button to open the alert
-    driver.find_element(By.ID, "confirmation").click()
+import pandas as pd
 
-    # Switch focus to the alert
-    confirmAlert = wait.until(EC.alert_is_present())
 
-    # Print the text in the alert
-    alertText = confirmAlert.text
-    print("Text in alert: " + alertText)
+data = {
+    "FirstName": ["Satvik", "Avinash", "Lahri"],
+    "LastName": ["Shah", "Kati", "Rath"],
+    "Email": [
+        "satshah@example.com",
+        "avinashk@example.com",
+        "lahri.rath@example.com"
+    ],
+    "PhoneNumber": [4537829158, 5892184058, 4528727830]
+}
 
-    # Close the alert by clicking OK
-    confirmAlert.dismiss()
 
-    # Print the message
-    print(driver.find_element(By.ID, "result").text)
+df = pd.DataFrame(data)
+
+
+df.to_excel("users.xlsx", index=False)
+
+print("Excel file 'users.xlsx' created successfully.")

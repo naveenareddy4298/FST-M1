@@ -1,31 +1,55 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
+import pytest
 
-# Start the Driver
-with webdriver.Firefox() as driver:
-    # Declare the wait variable
-    wait = WebDriverWait(driver, timeout=10)
-    # Navigate to the URL
-    driver.get("https://training-support.net/webelements/popups")
-    # Print the title of the page
-    print("Page title is: ", driver.title)
-    # Find the launcher button and click it
-    driver.find_element(By.ID, "launcher").click()
+# Additon test
+def test_addition():
+	
+    # Initialize two numbers
+	num1 = 10
+	num2 = 15
+    
+	# Add them
+	sum = num1 + num2
 
-    # Wait for the modal to appear
-    wait.until(EC.element_to_be_clickable((By.ID, "username")))
+	# Assertion
+	assert sum == 25
 
-    # Find the input fields
-    username = driver.find_element(By.ID, "username")
-    password = driver.find_element(By.ID, "password")
-    # Enter the credentials
-    username.send_keys("admin")
-    password.send_keys("password")
-    # Click the submit button
-    driver.find_element(By.XPATH, "//button[text()='Submit']").click()
+# Subtraction test
+def test_subtraction():
+  
+	# Initialize two numbers
+	num1 = 50
+	num2 = 35
+    
+	# Subtract them
+	diff = num1 - num2
 
-    # Print the success message
-    message = driver.find_element(By.CSS_SELECTOR, "h2.text-center").text
-    print("Login message: " + message)
+	# Assertion
+	assert diff == 15
+
+# Multiplication test
+@pytest.mark.activity
+def test_multiplication():
+  
+	# Initialize two numbers
+	num1 = 5
+	num2 = 20
+    
+	# Multiply them
+	prod = num1 * num2
+
+	# Assertion
+	assert prod == 100
+
+# Division test
+@pytest.mark.activity
+def test_division():
+  
+	# Initialize two numbers
+	num1 = 100
+	num2 = 5
+    
+	# Divide them
+	quot = num1 / num2
+
+	# Assertion
+	assert quot == 20

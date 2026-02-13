@@ -1,16 +1,4 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-
-# Start the Driver
-with webdriver.Firefox() as driver:
-    # Navigate to the URL
-    driver.get("https://training-support.net/")
-
-    # Print the title of the page
-    print("Page title is: ", driver.title)
-
-    # Find the "About Us" button on the page using ID and click it
-    driver.find_element(By.LINK_TEXT, "About Us").click()
-
-    # Print the title of the new page
-    print("New page title is: ", driver.title)
+name = input( "What is your name: " )
+age = int( input( "How old are you: " ) )
+year = str( ( 2024 - age ) + 100 )
+print( name + " will be 100 years old in the year " + year )
